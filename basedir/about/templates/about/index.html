@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ judul }}</title>
+</head>
+<body>
+    <img style="width: 100%;" src="{% static 'about/img/banner_about.jpg' %}" alt="">
+    <H1>{{ judul }}</H1>
+    <!-- <h2>{{ kontributor }}</h2> -->
+    <ul>
+        
+        {% for link,name in nav %}
+        <li><a href="{{ link }}" >{{ name }}</a></li>    
+        {% endfor %}
+        
+    </ul>
+    
+</body>
+</html>

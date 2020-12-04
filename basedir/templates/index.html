@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% include 'snippets/styles.html' %}
+
+    <title>{{ judul }}</title>
+</head>
+<body>
+<!-- navbar -->
+    {% include 'snippets/navbar.html' %}
+<!-- akhir navbar -->
+<!-- jumbotron -->
+    <div class="jumbotron text-white">
+        <div class="container">
+            <h1 class="display-4" style="margin-top:20% ;">{{ subjudul }}</h1>
+            <a class="btn btn-primary btn-lg tombol" href="#" >kontak</a>
+        </div>
+    </div>
+<!-- akhir jumbotron -->
+<!-- container panel -->
+    <div class="container" id="myBody">
+        <div class="row justify-content-center">
+            <div class="col-10 info-panel">
+                <h4 class="text-center">Hot Items</h4>
+                <div class="row">
+                    <div class="card-deck">
+                        <div class="card hot-item">
+                            <a href="#" rel="noopener noreferrer">
+                                <img src=" {% static 'img/p1.jpg' %}" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">Buku Desain</h5>
+                                <p class="card-text">Rp. 3000,-</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                        <div class="card hot-item">
+                            <a href="#" rel="noopener noreferrer">
+                                <img src=" {% static 'img/p2.jpg' %}"  class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">Buku Resep Masakan</h5>
+                                <p class="card-text">Rp. 3000,-</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                        <div class="card hot-item">
+                            <a href="#" rel="noopener noreferrer">
+                                <img src=" {% static 'img/p3.jpg' %}" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">Pena Tanpa Tinta</h5>
+                                <p class="card-text">Rp. 3000,-</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- content produk paket promo -->
+        
+        {% block list_paket %}
+        <section>
+            <div class="row product-package justify-content-center">
+                <div class="row row-cols-2 row-cols-md-5">
+                    {% for img_promo in list_promo  %}
+                    <a href="blog/detail/{{ img_promo.slug }}" rel="noopener noreferrer">
+                        <div class="col mb-4">
+                            <div class="card">
+                                <img src="blog/{{img_promo.image.url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ img_promo.name }}</h5>
+                                    <p class="card-text">{{ img_promo.price }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </section>
+        {% endblock list_paket %}
+        <!-- akhir content produk paket promo -->
+    </div>
+    <!-- akhir container panel -->
+    {% for pesan in messages %}
+        <script>
+            window.onload = function(){
+                alert("{{ pesan }}");
+            }
+        </script>
+    {% endfor %}  
+<!-- Footer -->
+{% include 'snippets/footer.html' %}
+<!-- akhir Footer -->
+
+{% include 'snippets/js.html' %}
+</body>
+</html>

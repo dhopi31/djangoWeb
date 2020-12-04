@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'snippets/styles.html' %}
+    <title>{{ judul }}</title>
+</head>
+<body>
+    <div class="jumbotron-2" id="myBody"></div>
+    <div class="container signout">
+        <div class="row justify-content-center">
+            <div class="col-md-auto">
+              <h1>
+                  Anda sudah sign out.
+              </h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-auto">
+              <h3>
+                  Kembali ke <a href="/">Halaman Utama</a>.
+              </h3>
+            </div>
+        </div>
+    </div>
+    {% include 'snippets/js.html' %}
+</body>
+</html>

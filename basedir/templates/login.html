@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'snippets/styles.html' %}
+    <title>{{ judul }}</title>
+</head>
+<body>
+    {% include 'snippets/navbar.html' %}
+    <div class="jumbotron-2"></div>
+    <div class="container col-10 info-panel-2" style="margin-bottom: 5%;" id="myBody">
+        <div class="row">
+            <div class="col-6">
+                <h4 class="text-center">
+                    <a href="/signup" class="btn btn-info">Signup</a>
+                </h4>
+            </div>
+            <div class="col-6">
+                <h4 class="text-center">
+                    Sign in
+                </h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include 'snippets/footer.html' %}
+    {% include 'snippets/js.html' %}
+</body>
+</html>

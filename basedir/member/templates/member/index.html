@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'snippets/styles.html' %}
+    <title>{{ judul }}</title>
+</head>
+<body>
+    {% include 'snippets/navbar.html' %}
+    <div class="jumbotron-2"></div>
+    <div class="container col-10 info-panel-2" style="margin-bottom: 5%;" id="myBody">
+        <div class="row">
+            <div class="col-6">
+                <h4 class="text-center">
+                    Signup
+                </h4>
+            </div>
+            <div class="col-6">
+                <h4 class="text-center">
+                    <a href="/member/signin" class="btn btn-info" >Sign in</a>
+                </h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class='signupForm'>
+                    <form method="POST">
+                        <!-- warning -->
+                        {% for pesan in messages %}
+                            {% if pesan.tags == 'error' %}
+                                <p style="color: red; text-align: center;"> {{ pesan }} </p>     
+                            {% elif pesan.tags == 'success' %}
+                                <p style="color: green; text-align: center;"> {{ pesan }} </p>     
+                            {% elif pesan.tags == 'info' %}
+                                    <script>
+                                        window.onload = function(){
+                                            alert("{{ pesan }}");
+                                        }
+                                    </script>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- End warning -->
+
+                        {% csrf_token %}
+                        <div class="form-row">
+                            {% for content1 in signup_form1 %}
+                            <div class="form-group col-md-6">
+                                {{content1.label_tag}}
+                                {{content1}}
+                            </div>
+                            {% endfor %}
+                        </div>      
+                        <div class="form-row">
+                            {% for content2 in signup_form2 %}
+                            <div class="form-group col-md-4">
+                                {{content2.label_tag}}
+                                {{content2}}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 cek-password"></div>
+                            <div class="col-md-4 cek-password"></div>
+                            <div class="col-md-4 cek-password">
+                                <input type="checkbox" id="inputCek" onclick="visiblePassword()"> Show Password
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary button-sign">Create</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="/member/signin"> Have account?</a> 
+                        <a href=""> Forget password?</a> 
+                        <a href=""> Send email activation</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% include 'snippets/footer.html' %}
+    {% include 'snippets/js.html' %}
+</body>
+</html>
