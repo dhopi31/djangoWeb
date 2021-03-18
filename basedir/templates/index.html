@@ -73,9 +73,9 @@
         {% block list_paket %}
         <section>
             <div class="row product-package justify-content-center">
-                <div class="row row-cols-2 row-cols-md-5">
+                <div class="row row-cols-2 row-cols-md-8">
                     {% for img_promo in list_promo  %}
-                    <a href="blog/detail/{{ img_promo.slug }}" rel="noopener noreferrer">
+                    <a href="product/detail/{{ img_promo.slug }}" rel="noopener noreferrer">
                         <div class="col mb-4">
                             <div class="card">
                                 <img src="blog/{{img_promo.image.url }}" class="card-img-top" alt="...">

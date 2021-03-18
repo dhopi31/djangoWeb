@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
-from blog.models import Post, PostImage
+from product.models import PostProduct, PostImageProduct
 
 #menampilkan index
 # def index2(request):
@@ -13,11 +13,13 @@ from blog.models import Post, PostImage
 #     return HttpResponse(isi)
 
 def index(request):
-    list_promo = Post.objects.all()[:10]
+
+    list_promo = PostProduct.objects.all()[:10]
+    print(list_promo)
     context = {
         'judul' : 'Home',
         'banner' : 'img/banner.jpg', 
-        'subjudul' : 'Lengkapi Kebutuhan Alat Kantor atau Sekolah Anda',
+        'subjudul' : 'Lengkapi Kebutuhan Alat Tulis Anda',
         'list_promo':list_promo,
         'nav' : 
         [

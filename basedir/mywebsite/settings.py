@@ -118,7 +118,7 @@ USE_L10N = True
 USE_TZ = True
 
 # session expired
-SESSION_COOKIE_AGE = 10
+SESSION_COOKIE_AGE = 10 * 60
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
