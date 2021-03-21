@@ -1,5 +1,6 @@
 {% load static %}
-{% load humanize %}
+{% load rupiah %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +84,7 @@
                                     <img src="blog/{{img_promo.image.url }}" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h6 class="card-title">{{ img_promo.name }}</h6>
-                                        <p class="card-text">Rp. {{ img_promo.price|intcomma }} </p>
+                                        <p class="card-text">{{ img_promo.price | rupiah_format }} </p>
                                     </div>
                                 </div>
                             </div>

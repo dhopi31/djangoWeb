@@ -1,5 +1,5 @@
 {% load static %}
-{% load humanize %}
+{% load rupiah %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +21,7 @@
                             <img src="{{ paket.image.url }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ paket.name }}</h5>
-                                <p class="card-text uang">Rp. {{ paket.price|intcomma}}</p>
+                                <p class="card-text uang"> {{ paket.price| rupiah_format }} </p>
                             </div>
                         </div>
                     </div>

@@ -66,13 +66,16 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'currencies.context_processors.currencies',
             ],
+            'libraries':{
+                'rupiah': 'product.templatetags.rupiah',
+            }
         },
     },
 ]
 
 WSGI_APPLICATION = 'mywebsite.wsgi.application'
 
-DEFAULT_CURRENCY = 'IND'
+DEFAULT_CURRENCY = 'IDN'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
