@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
     url(r'^signin/', views.signin),
-    url(r'^about/', views.about),
+    url(r'^about/', include('about.urls')),
     url(r'^signout/', include('member.urls')),
     url(r'^member/', include('member.urls')),
 

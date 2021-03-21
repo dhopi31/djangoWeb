@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     url(r'^detail/(?P<slugInput>[\w-]+)/$', views.detail),
-   
+    url(r'^$', views.index),  
 ]
 
 if settings.DEBUG:

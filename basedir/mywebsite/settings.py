@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog','about','member','product',
+    'django.contrib.humanize',
+    'blog','about','member','product','currencies',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'currencies.context_processors.currencies',
             ],
         },
     },
@@ -70,6 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mywebsite.wsgi.application'
 
+DEFAULT_CURRENCY = 'IND'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

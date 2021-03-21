@@ -9,20 +9,6 @@ def index(request):
         'nav':
             [
                 ['/','Home'],
-                ['/about/kontak','Kontak'],
             ]
     }
     return render(request, 'about/index.html' , context)
-
-def kontak(request):
-    context = {
-        'judul' : 'Halaman Kontak',
-        'banner' : 'about/img/banner_about.jpg', 
-        'kontributor' : 'ini halaman kontak',
-        'nav':
-            [
-                ['/','Home'],
-                ['/about/kontak','Kontak'],
-            ]
-    }
-    return render(request, 'index.html', context)

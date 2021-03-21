@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from product.models import PostProduct, PostImageProduct
 
+from member.decorators import allowed_users
 #menampilkan index
 # def index2(request):
 #     judul = "home"
@@ -12,6 +13,7 @@ from product.models import PostProduct, PostImageProduct
 #     isi = judul + konten
 #     return HttpResponse(isi)
 
+# @allowed_users(allowed_roles=['customer'])
 def index(request):
 
     list_promo = PostProduct.objects.all()[:10]
@@ -24,8 +26,8 @@ def index(request):
         'nav' : 
         [
             ['/', 'Home'],
-            ['/blog', 'Produk'],
-            ['/about', 'Parcel'],
+            ['/product', 'Produk'],
+            ['/about', 'Kami'],
             
         ],
         'member' : '/member',

@@ -1,0 +1,37 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'snippets/styles.html' %}
+    <title>{{ judul }}</title>
+</head>
+<body>
+    {% include 'snippets/navbar.html' %}
+    <img style="width: 100%; height: 10%;" src=" {% static 'blog/img/banner2.jpg' %}" alt="">
+    <div class="container" id="myBody">
+        <div class="row product justify-content-center">
+            <div class="row row-cols-2 row-cols-md-5">
+                {% for paket in list_paket %}
+                <a href="detail/{{ paket.slug }}" rel="noopener noreferrer">
+                    <div class="col mb-4">
+                        <div class="card hot-item">
+                            <img src="{{ paket.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ paket.name }}</h5>
+                                <p class="card-text uang">Rp. {{ paket.price|intcomma}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}                    
+            </div>
+        </div>
+            
+    </div>
+    {% include 'snippets/footer.html' %}
+    {% include 'snippets/js.html' %}
+</body>
+</html>

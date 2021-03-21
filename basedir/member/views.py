@@ -6,7 +6,8 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
 from django.views import View
-
+from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import force_bytes, force_text, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
@@ -100,8 +101,6 @@ def index(request):
 
 def signin(request):
 
-    signup_form1 = SignUpForm1()    
-    signup_form2 = SignUpForm2()  
     login_form = LoginForm()
     context = {
         'judul' : 'Member',
@@ -114,38 +113,41 @@ def signin(request):
         ],
         'member' : '/member/',
         'login_form': login_form,
-        'signup_form1':signup_form1,
-        'signup_form2':signup_form2,
     }
 
     if request.method=="POST":
         
         username_login = request.POST['username']
         password_login = request.POST['password']
-        user_auth = authenticate(request, username=username_login, password=password_login)
-        print(user_auth)
 
-        user = User.objects.get(username=username_login)
-        print(user.is_active)
-
-        if user.is_active==False:
-            messages.error(request, "Akun anda belum diaktivasi, silahkan melakukan aktivasi melalui link di email.")
+        try:
+            user = User.objects.get(username=username_login)
+        except User.DoesNotExist:
+            messages.error(request, "User tidak dikenali")
             return redirect('/member/signin', context)
 
-        if user_auth is not None:
+        user_auth = authenticate(request, username=username_login, password=password_login)
+        
+        if user_auth is not None and user.is_active is True:
             login(request, user_auth)
             messages.info(request, "Anda berhasil Login.")
             return redirect ('/',context)
             
+        elif user.is_active is False:
+            messages.error(request, "Akun anda belum diaktivasi, silahkan melakukan aktivasi melalui link di email.")
+            return redirect('/member/signin', context)
+        
         else:
-            messages.error(request, "Username dan Password tidak cocok.")
+            messages.error(request, "Password tidak cocok.")
             return redirect('/member/signin', context)
             
+
     if request.method=="GET":
         if request.user.is_authenticated():
             return redirect('/')
         else:
             return render(request, 'member/login.html' , context)
+
 
 @login_required
 def signout(request):
@@ -155,6 +157,7 @@ def signout(request):
     print('proses logout')
     logout(request)
     return render(request, 'member/logout.html', context)
+
 
 class VerificationEmail(View):
 
